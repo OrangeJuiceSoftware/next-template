@@ -13,7 +13,6 @@ const PageLayout = ({ children }) => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
 
-
       <Sider
         theme={'light'}
         width={SIDEBAR_WIDTH}

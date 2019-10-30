@@ -6,9 +6,7 @@ import Link from 'next/link';
 
 import { Layout } from '~/components';
 
-
 const Home = ({ data }) => {
-
   return (
     <Layout>
       <Head>
@@ -23,9 +21,9 @@ const Home = ({ data }) => {
   );
 };
 
-
 Home.getInitialProps = async function() {
-  // const { data } = await axios.get(`${process.env.API_URL}/api`);
+  const { data } = await axios.get(`${process.env.API_URL}/api`);
+  console.log('page 2');
 
   return {
   //   data
