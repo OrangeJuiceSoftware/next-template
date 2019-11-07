@@ -1,7 +1,8 @@
-// this is going to be the landing page
 
 import React, { useEffect } from 'react';
 import axios from 'axios';
+
+import withNeedsAuthentication from '~/components/hocs/withNeedsAuthentication';
 
 import Head from 'next/head';
 import Link from 'next/link';
@@ -47,4 +48,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default withNeedsAuthentication(Dashboard);

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import withUnlessAuthenticated from '~/components/hocs/withUnlessAuthenticated';
+
 import Head from 'next/head';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
@@ -62,4 +64,4 @@ const SignUpPage = () => {
 };
 
 
-export default SignUpPage;
+export default withUnlessAuthenticated(SignUpPage);
