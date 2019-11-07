@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 
-import firebaseInit from './_services/firebaseInit';
+import firebaseInit from '../client-services/firebaseInit';
 const firebase = firebaseInit();
 const auth = firebase.auth();
 
@@ -38,7 +38,7 @@ const SignUpPage = () => {
   return (
     <Layout>
       <Head>
-        <title>Login</title>
+        <title>Signup</title>
         <link rel='icon' href='/favicon.ico' importance='low' />
       </Head>
 
@@ -50,12 +50,6 @@ const SignUpPage = () => {
 
     </Layout>
   );
-};
-
-SignUpPage.getInitialProps = async function({ query }) {
-  // handle redirect if there is a user
-
-  return {};
 };
 
 

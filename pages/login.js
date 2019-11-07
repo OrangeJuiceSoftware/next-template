@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import axios from 'axios';
-import jsCookies from 'js-cookie';
-
 import Head from 'next/head';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 
-import firebaseInit from './_services/firebaseInit';
+import firebaseInit from '../client-services/firebaseInit';
 const firebase = firebaseInit();
 const auth = firebase.auth();
 
@@ -23,37 +20,19 @@ const LoginPage = () => {
   });
 
   const login = async ({ email, password }) => {
-    email = 'test@gmail.com';
-    password = '12345678';
-
     try {
-      const { user } = await auth.signInWithEmailAndPassword(email, password);
-      const idToken = await user.getIdToken();
-
-      // const csrfToken = jsCookies.get('csrfToken');
-      // console.log(csrfToken);
-
-
-      const api = axios.create({
-        baseURL: `${process.env.API_URL}/api`,
-        timeout: 1000
-      });
-
-      const { data } = await api.post('auth/request-token', { idToken });
-
-      console.log(data);
+      await auth.signInWithEmailAndPassword(email, password);
 
       // send them to the home page
-      // Router.push({ pathname: '/' });
+      Router.push({ pathname: '/' });
     } catch (error) {
       console.log(error);
-
-      // set errors
+      // set errors... this will pass the errors into the form
       // setErrors({
       //   form: 'sfdsf',
-      //   email: 'sfdsf'
+      //   email: 'sfdsf',
       //   password: 'sfdsf'
-      // })
+      // });
     }
   };
 
@@ -69,16 +48,8 @@ const LoginPage = () => {
       <Link href={'/signup'}>
         <a>Signup</a>
       </Link>
-
     </Layout>
   );
 };
-
-// LoginPage.getInitialProps = async function({ query }) {
-//   // handle redirect if there is a user
-
-//   return {};
-// };
-
 
 export default LoginPage;

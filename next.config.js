@@ -9,8 +9,6 @@ const themeVariables = lessToJS(
   fs.readFileSync(path.resolve(__dirname, './assets/less/antd-custom.less'), 'utf8')
 )
 
-console.log(process.env);
-
 module.exports = withLess({
   env: {
     API_URL: process.env.API_URL
@@ -40,6 +38,7 @@ module.exports = withLess({
         use: 'null-loader',
       })
     }
+
     return config
   },
 })
