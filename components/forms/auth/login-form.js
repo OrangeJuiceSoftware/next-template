@@ -19,7 +19,7 @@ const NormalLoginForm = ({ form, onSubmit, externalErrors = {} }) => {
   };
 
   return(
-    <Form style={{ maxWidth: 300 }} onSubmit={handleSubmit} className="login-form">
+    <Form onSubmit={handleSubmit} className="login-form">
       <Form.Item {...externalErrors.form && {
         help: externalErrors.form,
         validateStatus: 'error'

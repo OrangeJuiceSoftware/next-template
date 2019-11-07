@@ -8,6 +8,9 @@ import firebaseInit from '../client-services/firebaseInit';
 const firebase = firebaseInit();
 const auth = firebase.auth();
 
+import { Row, Col, Typography } from 'antd';
+const { Title } = Typography;
+
 import { Layout } from '~/components';
 import LoginForm from '~/components/forms/auth/login-form';
 
@@ -42,11 +45,17 @@ const SignUpPage = () => {
         <link rel='icon' href='/favicon.ico' importance='low' />
       </Head>
 
-      <LoginForm onSubmit={signup} externalErrors={errors}/>
 
-      <Link href={'/login'}>
-        <a>Login</a>
-      </Link>
+      <Row style={{ marginTop: 50 }} justify={'center'} type={'flex'}>
+        <Col>
+          <Title>Welcom to the Jungle</Title>
+          <LoginForm onSubmit={signup} externalErrors={errors}/>
+
+          <Link href={'/login'}>
+            <a>Login</a>
+          </Link>
+        </Col>
+      </Row>
 
     </Layout>
   );

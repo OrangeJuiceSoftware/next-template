@@ -5,11 +5,16 @@ import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 
 import firebaseInit from '../client-services/firebaseInit';
-const firebase = firebaseInit();
-const auth = firebase.auth();
+
+import { Row, Col, Typography } from 'antd';
+const { Title } = Typography;
 
 import { Layout } from '~/components';
 import LoginForm from '~/components/forms/auth/login-form';
+
+
+const firebase = firebaseInit();
+const auth = firebase.auth();
 
 const LoginPage = () => {
   const router = useRouter();
@@ -34,6 +39,7 @@ const LoginPage = () => {
       //   password: 'sfdsf'
       // });
     }
+
   };
 
   return (
@@ -43,11 +49,18 @@ const LoginPage = () => {
         <link rel='icon' href='/favicon.ico' importance='low' />
       </Head>
 
-      <LoginForm onSubmit={login} externalErrors={errors}/>
+      <Row style={{ marginTop: 50 }} justify={'center'} type={'flex'}>
+        <Col>
+          <Title>Welcom to the Jungle</Title>
 
-      <Link href={'/signup'}>
-        <a>Signup</a>
-      </Link>
+          <LoginForm onSubmit={login} externalErrors={errors}/>
+
+          <Link href={'/signup'}>
+            <a>Signup</a>
+          </Link>
+        </Col>
+      </Row>
+
     </Layout>
   );
 };
