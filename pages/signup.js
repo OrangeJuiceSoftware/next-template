@@ -28,9 +28,15 @@ const SignUpPage = () => {
     try {
       await auth.createUserWithEmailAndPassword(email, password);
 
+      // TODO: create firestore user
+
       // send them to the home page
       Router.push({ pathname: '/' });
     } catch (error) {
+      // if firestore user failed logout
+
+      // if already exists in auth but no firestore self heal
+
       // set errors
       // setErrors({
       //   form: 'sfdsf',
