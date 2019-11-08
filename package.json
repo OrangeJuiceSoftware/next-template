@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next --port $PORT",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "now": "now dev",
+    "deploy": "now"
   },
   "dependencies": {
     "@ant-design/colors": "^3.2.2",
@@ -29,6 +31,7 @@
     "babel-eslint": "^10.0.3",
     "babel-plugin-root-import": "^6.4.1",
     "eslint": "^6.5.1",
-    "eslint-plugin-react": "^7.16.0"
+    "eslint-plugin-react": "^7.16.0",
+    "now": "^16.4.4"
   }
 }
