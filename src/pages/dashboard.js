@@ -13,28 +13,110 @@ import { Button, Menu, Icon } from 'antd';
 
 import { Row, Col, Typography } from 'antd';
 
-const firebase = firebaseInit();
-const firestore = firebase.firestore();
+const { auth, firestore } = firebaseInit();
 
 const Dashboard = () => {
   const generateSidebarItems = () => {
     return (
-      <>
-        <Menu defaultSelectedKeys={['1']} mode="inline">
-          <Menu.Item key="1">
-            <Icon type="pie-chart" />
-            <span>Option 1</span>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <Icon type="desktop" />
-            <span>Option 2</span>
-          </Menu.Item>
-          <Menu.Item key="9">
-            <Icon type="file" />
-            <span>File</span>
-          </Menu.Item>
-        </Menu>
-      </>
+      <Menu defaultSelectedKeys={['1']} mode="inline">
+        <Menu.Item key="1">
+          <Icon type="pie-chart" />
+          <span>Option 1</span>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Icon type="desktop" />
+          <span>Option 2</span>
+        </Menu.Item>
+        <Menu.Item key="9">
+          <Icon type="file" />
+          <span>File</span>
+        </Menu.Item>
+        <Menu.Item key="1">
+          <Icon type="pie-chart" />
+          <span>Option 1</span>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Icon type="desktop" />
+          <span>Option 2</span>
+        </Menu.Item>
+        <Menu.Item key="9">
+          <Icon type="file" />
+          <span>File</span>
+        </Menu.Item>
+        <Menu.Item key="1">
+          <Icon type="pie-chart" />
+          <span>Option 1</span>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Icon type="desktop" />
+          <span>Option 2</span>
+        </Menu.Item>
+        <Menu.Item key="9">
+          <Icon type="file" />
+          <span>File</span>
+        </Menu.Item>
+        <Menu.Item key="1">
+          <Icon type="pie-chart" />
+          <span>Option 1</span>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Icon type="desktop" />
+          <span>Option 2</span>
+        </Menu.Item>
+        <Menu.Item key="9">
+          <Icon type="file" />
+          <span>File</span>
+        </Menu.Item>
+        <Menu.Item key="1">
+          <Icon type="pie-chart" />
+          <span>Option 1</span>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Icon type="desktop" />
+          <span>Option 2</span>
+        </Menu.Item>
+        <Menu.Item key="9">
+          <Icon type="file" />
+          <span>File</span>
+        </Menu.Item>
+        <Menu.Item key="1">
+          <Icon type="pie-chart" />
+          <span>Option 1</span>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Icon type="desktop" />
+          <span>Option 2</span>
+        </Menu.Item>
+        <Menu.Item key="9">
+          <Icon type="file" />
+          <span>File</span>
+        </Menu.Item>
+        <Menu.Item key="1">
+          <Icon type="pie-chart" />
+          <span>Option 1</span>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Icon type="desktop" />
+          <span>Option 2</span>
+        </Menu.Item>
+        <Menu.Item key="9">
+          <Icon type="file" />
+          <span>File</span>
+        </Menu.Item>
+        <Menu.Item key="1">
+          <Icon type="pie-chart" />
+          <span>Option 1</span>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Icon type="desktop" />
+          <span>Option 2</span>
+        </Menu.Item>
+        <Menu.Item key="9">
+          <Icon type="file" />
+          <span>File</span>
+        </Menu.Item>
+      </Menu>
+
     );
   };
 
@@ -45,9 +127,120 @@ const Dashboard = () => {
         <link rel='icon' href='/favicon.ico' importance='low'/>
       </Head>
 
-      <Link href={'/'}>
-        <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
-      </Link>
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+      <Row style={{ height: 150 }}>
+        <Link style={{ height: 150 }}href={'/'}>
+          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
+        </Link>
+      </Row>
+
+
     </Layout>
   );
 };

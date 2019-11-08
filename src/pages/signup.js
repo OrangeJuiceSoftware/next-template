@@ -7,8 +7,7 @@ import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 
 import firebaseInit from '../client-services/firebaseInit';
-const firebase = firebaseInit();
-const auth = firebase.auth();
+const { auth, firestore } = firebaseInit();
 
 import { Row, Col, Typography } from 'antd';
 const { Title } = Typography;

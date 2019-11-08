@@ -11,8 +11,8 @@ import { Button } from 'antd';
 
 
 import firebaseInit from '../client-services/firebaseInit';
-const firebase = firebaseInit();
-const firestore = firebase.firestore();
+const { auth, firestore } = firebaseInit();
+
 import { useCollection } from 'react-firebase-hooks/firestore';
 
 const Sandbox = ({ data, user }) => {

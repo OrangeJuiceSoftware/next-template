@@ -12,15 +12,19 @@ const SIDEBAR_WIDTH = 250;
 const PageLayout = ({ children, sidebarItems }) => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
+      <Header/>
 
-      {sidebarItems && <Sidebar width={SIDEBAR_WIDTH} items={sidebarItems}/>}
+      <Layout>
+        {sidebarItems && <Sidebar width={SIDEBAR_WIDTH} items={sidebarItems} style={{
+          overflow: 'auto',
+          height: 'calc(100vh - 64px)'
+        }}/>}
 
-      <Layout style={{ marginLeft: sidebarItems ? SIDEBAR_WIDTH : 0 }}>
-        <Header/>
-        <Content style={{ margin: '0 16px' }}>
-          {children}
-        </Content>
-        <Footer/>
+        <Layout style={{ overflow: 'auto', height: 'calc(100vh - 64px)' }}>
+          <Content style={{ margin: '0 16px' }}>
+            {children}
+          </Content>
+        </Layout>
       </Layout>
 
     </Layout>

@@ -11,9 +11,7 @@ import { Button } from 'antd';
 
 
 import firebaseInit from '../client-services/firebaseInit';
-const firebase = firebaseInit();
-const firestore = firebase.firestore();
-const auth = firebase.auth();
+const { auth, firestore } = firebaseInit();
 
 const Home = ({ data }) => {
 
