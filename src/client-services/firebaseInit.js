@@ -22,5 +22,8 @@ export default () => {
     }
   }
 
-  return firebase;
+  return{
+    auth: firebase.auth(),
+    firestore: firebase.firestore()
+  } ;
 };

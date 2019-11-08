@@ -1,4 +1,4 @@
-import firebase from 'firebase-admin';
+import firebase, { firestore } from 'firebase-admin';
 import serviceAccount from '~/firebase-service-account.json';
 
 
@@ -16,5 +16,8 @@ export default () => {
     }
   }
 
-  return firebase;
+  return{
+    auth: firebase.auth(),
+    firestore: firebase.firestore()
+  } ;
 };
