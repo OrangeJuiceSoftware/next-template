@@ -1,36 +1,40 @@
 
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import firebaseInit from '../client-services/firebaseInit';
 
-import withNeedsAuthentication from '~/components/hocs/withNeedsAuthentication';
+import withNeedsAuthentication from '~/src/components/hocs/withNeedsAuthentication';
 
 import Head from 'next/head';
 import Link from 'next/link';
 
-import { Layout } from '~/components';
+import { Layout } from '~/src/components';
 import { Button, Menu, Icon } from 'antd';
 
-import firebaseInit from '../client-services/firebaseInit';
+import { Row, Col, Typography } from 'antd';
+
 const firebase = firebaseInit();
 const firestore = firebase.firestore();
 
 const Dashboard = () => {
   const generateSidebarItems = () => {
     return (
-      <Menu defaultSelectedKeys={['1']} mode="inline">
-        <Menu.Item key="1">
-          <Icon type="pie-chart" />
-          <span>Option 1</span>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <Icon type="desktop" />
-          <span>Option 2</span>
-        </Menu.Item>
-        <Menu.Item key="9">
-          <Icon type="file" />
-          <span>File</span>
-        </Menu.Item>
-      </Menu>
+      <>
+        <Menu defaultSelectedKeys={['1']} mode="inline">
+          <Menu.Item key="1">
+            <Icon type="pie-chart" />
+            <span>Option 1</span>
+          </Menu.Item>
+          <Menu.Item key="2">
+            <Icon type="desktop" />
+            <span>Option 2</span>
+          </Menu.Item>
+          <Menu.Item key="9">
+            <Icon type="file" />
+            <span>File</span>
+          </Menu.Item>
+        </Menu>
+      </>
     );
   };
 

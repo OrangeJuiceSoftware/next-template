@@ -1,6 +1,6 @@
 import React from 'react';
 import App from 'next/app';
-import withUser from '~/components/hocs/withUser';
+import withUser from '~/src/components/hocs/withUser';
 
 class MyApp extends App {
   render() {

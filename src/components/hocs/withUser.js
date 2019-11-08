@@ -1,5 +1,5 @@
 import React from 'react';
-import firebaseInit from '~/client-services/firebaseInit';
+import firebaseInit from '~/src/client-services/firebaseInit';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const firebase = firebaseInit();
