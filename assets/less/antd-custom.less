@@ -248,20 +248,20 @@
 
 // // Layout
 // @layout-body-background: #f0f2f5;
-// @layout-header-background: #001529;
+@layout-header-background: #f0f2f5;
 @layout-footer-background: #1b1b1b;
 // @layout-header-height: 64px;
 // @layout-header-padding: 0 50px;
 // @layout-footer-padding: 24px 50px;
-// @layout-sider-background: @layout-header-background;
+@layout-sider-background: @layout-header-background;
 // @layout-trigger-height: 48px;
 // @layout-trigger-background: #002140;
 // @layout-trigger-color: #fff;
 // @layout-zero-trigger-width: 36px;
 // @layout-zero-trigger-height: 42px;
 // // Layout light theme
-@layout-sider-background-light: #eeeeee;
-@layout-trigger-background-light: #eeeeee;
+@layout-sider-background-light: @layout-sider-background;
+@layout-trigger-background-light: @layout-sider-background;
 // @layout-trigger-color-light: @text-color;
 
 // // z-index list, order by `z-index`
@@ -394,8 +394,8 @@
 // @menu-inline-toplevel-item-height: 40px;
 // @menu-item-height: 40px;
 // @menu-collapsed-width: 80px;
-@menu-bg: rgb(238, 238, 238);
-@menu-popup-bg: rgb(238, 238, 238);
+@menu-bg: @layout-header-background;
+@menu-popup-bg: @layout-header-background;
 // @menu-item-color: @text-color;
 // @menu-highlight-color: @primary-color;
 // @menu-item-active-bg: @item-active-bg;

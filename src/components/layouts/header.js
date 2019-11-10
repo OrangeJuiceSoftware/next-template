@@ -26,8 +26,9 @@ const menu = (
 );
 
 const PageHeader = ({ user }) => {
+
   return (
-    <Header style={{ background: '#fff', padding: 0 }}>
+    <Header style={{ padding: 0 }}>
       <Row type={'flex'} align={'middle'} justify={'space-between'}>
         <div style={{
           height: 32,
@@ -37,7 +38,7 @@ const PageHeader = ({ user }) => {
         }}/>
 
         {user&& <Row style={{ margin: '0 16px' }}>
-          <Dropdown trigger={'click'} overlay={menu}>
+          <Dropdown trigger={['click']} overlay={menu}>
             <Button size={'large'}>
               <Icon style={{ fontSize: 20 }} type="user" />
             </Button>
