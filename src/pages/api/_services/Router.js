@@ -11,7 +11,7 @@ const chainMiddlewares = ([firstMiddleware, ...restOfMiddlewares]) => {
 export default function() {
   const methods = {};
 
-  const router = function(req, res) {
+  const _router = function(req, res) {
     const handler = methods[req.method];
 
     if (handler) {
@@ -23,21 +23,21 @@ export default function() {
     return res.end();
   };
 
-  router.get = (...middlewares) => {
+  _router.get = (...middlewares) => {
     methods['GET'] = chainMiddlewares(middlewares);
   };
 
-  router.post = (...middlewares) => {
+  _router.post = (...middlewares) => {
     methods['POST'] = chainMiddlewares(middlewares);
   };
 
-  router.put = (...middlewares) => {
+  _router.put = (...middlewares) => {
     methods['PUT'] = chainMiddlewares(middlewares);
   };
 
-  router.delete = (...middlewares) => {
+  _router.delete = (...middlewares) => {
     methods['DELETE'] = chainMiddlewares(middlewares);
   };
 
-  return router;
+  return _router;
 }
