@@ -5,13 +5,14 @@ import '@firebase/auth';
 export default () => {
   try {
     var config = {
-      apiKey: 'AIzaSyBeDGH-cUx_v4j1wse8dNIdsVkb1L8nqrc',
-      authDomain: 'dungeons-and-dragons-dfe38.firebaseapp.com',
-      databaseURL: 'https://dungeons-and-dragons-dfe38.firebaseio.com',
-      projectId: 'dungeons-and-dragons-dfe38',
-      storageBucket: 'dungeons-and-dragons-dfe38.appspot.com',
-      messagingSenderId: '5831976520',
-      appId: '1:5831976520:web:b870408034b2cbe8c89a7d'
+      apiKey: 'AIzaSyBCtZ3VbGRX1KJbemJN7ME7tktVmmPaEDM',
+      authDomain: 'mermaid-v1.firebaseapp.com',
+      databaseURL: 'https://mermaid-v1.firebaseio.com',
+      projectId: 'mermaid-v1',
+      storageBucket: 'mermaid-v1.appspot.com',
+      messagingSenderId: '408272070366',
+      appId: '1:408272070366:web:371e79cb5a6a943fa4044f',
+      measurementId: 'G-NJ7VR55YQ4'
     };
     firebase.initializeApp(config);
   } catch (err) {

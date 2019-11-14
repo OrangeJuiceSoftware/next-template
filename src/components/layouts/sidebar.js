@@ -6,7 +6,6 @@ const { Sider } = Layout;
 const Sidebar = ({ width, items, style }) => {
   const _style = {
     borderTopRightRadius: 30,
-    borderBottomRightRadius: 30,
     ...style
   };
 

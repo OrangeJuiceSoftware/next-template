@@ -6,7 +6,7 @@ export default () => {
   try {
     firebase.initializeApp({
       credential: firebase.credential.cert(serviceAccount),
-      databaseURL: 'https://dungeons-and-dragons-dfe38.firebaseio.com'
+      databaseURL: 'https://mermaid-v1.firebaseio.com'
     });
   } catch (err) {
     // we skip the "already exists" message which is

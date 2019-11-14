@@ -28,4 +28,4 @@ yarn-error.log*
 
 firebase-service-account.json
 
-/**/sandbox.js
+**/sandbox.js

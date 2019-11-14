@@ -39,10 +39,12 @@ const LoginPage = () => {
       // The signed-in user info.
       var user = result.user;
 
-      console.log(user);
+      if (user) {
+        console.log('redirected from the redirect');
+        Router.push({ pathname: '/' });
+      }
 
 
-      Router.push({ pathname: '/' });
     }).catch(function(error) {
 
       console.log(error);
