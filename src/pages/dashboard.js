@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+
 import { useCollection } from 'react-firebase-hooks/firestore';
 import axios from 'axios';
 
@@ -9,8 +10,15 @@ import withNeedsAuthentication from '~/src/components/hocs/withNeedsAuthenticati
 
 import Head from 'next/head';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
 import { Layout } from '~/src/components';
+
+
+const Editor = dynamic(import('~/src/components/dashboard/editor'), {
+  ssr: false
+});
+
 import { Button, Col, Icon, Menu, Row, Typography } from 'antd';
 import { async } from '@firebase/util';
 const { SubMenu } = Menu;
@@ -72,9 +80,7 @@ const Dashboard = () => {
       </Head>
 
       <Row style={{ height: 150 }}>
-        <Link href={'/'}>
-          <a>THIS IS THE MOTHERFUCKING DASHBOARD YOU BITCH</a>
-        </Link>
+        <Editor></Editor>
       </Row>
     </Layout>
   );
