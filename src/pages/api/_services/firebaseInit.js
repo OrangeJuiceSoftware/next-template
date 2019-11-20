@@ -16,7 +16,8 @@ export default () => {
     }
   }
 
-  return{
+  return {
+    admin: firebase,
     auth: firebase.auth(),
     firestore: firebase.firestore()
   } ;

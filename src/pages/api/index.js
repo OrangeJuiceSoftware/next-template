@@ -1,8 +1,7 @@
 import firebaseInit from './_services/firebaseInit';
 import Router from './_services/Router.js';
 
-const admin = firebaseInit();
-const firestore = admin.firestore();
+const { firestore } = firebaseInit();
 
 const router = Router();
 
