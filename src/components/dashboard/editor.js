@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-markdown';
 import 'ace-builds/src-noconflict/theme-github';
-
 import markdownIt from 'markdown-it';
 import markdownItMermaid from 'markdown-it-mermaid';
 
@@ -13,7 +12,7 @@ mdi.use(markdownItMermaid);
 mdi.mermaid.loadPreferences({
   get: key => {
     if (key === 'mermaid-theme') {
-      return 'forest';
+      return 'default';
     } else if (key === 'gantt-axis-format') {
       return '%Y/%m/%d';
     } else {
@@ -23,9 +22,7 @@ mdi.mermaid.loadPreferences({
 });
 
 export default () => {
-  const [raw, setRaw] = useState('');
-
-  const markdown = mdi.render(`
+  const [raw, setRaw] = useState(`
   # This is a header And 
   this is a paragraph
 
@@ -39,12 +36,10 @@ graph TD
 \`\`\`
 `);
 
-
-  console.log(markdown);
-
+  const markdown = mdi.render(raw);
 
   return(
-    <div>
+    <>
       <Col span={12}>
         <AceEditor
           placeholder="Placeholder Text"
@@ -67,9 +62,9 @@ graph TD
           }}/>
       </Col>
       <Col span={12}>
-        <div style={{ height: 500 }}dangerouslySetInnerHTML={{ __html:markdown }} />
+        <div style={{ height: 500 }} dangerouslySetInnerHTML={{ __html:markdown }}></div>
       </Col>
-    </div>
+    </>
   );
 };
 
