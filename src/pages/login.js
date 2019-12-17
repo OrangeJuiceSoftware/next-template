@@ -17,7 +17,6 @@ import LoginForm from '~/src/components/forms/auth/login-form';
 
 import { geekblue } from '@ant-design/colors';
 
-
 const githubProvider = new firebase.auth.GithubAuthProvider();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
@@ -27,7 +26,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     router.prefetch('/');
-  });
+  }, []);
 
   useEffect(() => {
     auth.getRedirectResult().then(function(result) {
