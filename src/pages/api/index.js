@@ -1,7 +1,6 @@
-import firebaseInit from './_services/firebaseInit';
+import admin, { auth, firestore } from './_services/firebase';
 import Router from './_services/Router.js';
 
-const { firestore } = firebaseInit();
 
 const router = Router();
 

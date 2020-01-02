@@ -10,8 +10,7 @@ import { Layout } from '~/src/components';
 import { Button } from 'antd';
 
 
-import firebaseInit from '../client-services/firebaseInit';
-const { auth, firestore } = firebaseInit();
+import { auth, firestore } from '../client-services/firebase';
 
 const Home = ({ data }) => {
 

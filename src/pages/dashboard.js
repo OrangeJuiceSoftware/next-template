@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 
 import { useCollection } from 'react-firebase-hooks/firestore';
-import firebaseInit from '../client-services/firebaseInit';
+import { auth, firestore } from '../client-services/firebase';
 
 import withNeedsAuthentication from '~/src/components/hocs/withNeedsAuthentication';
 
@@ -11,14 +11,13 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
 import { Layout } from '~/src/components';
+
 const Editor = dynamic(import('~/src/components/dashboard/editor'), {
   ssr: false
 });
 
 import { Button, Col, Icon, Menu, Row, Typography } from 'antd';
 const { SubMenu } = Menu;
-
-const { auth, firestore } = firebaseInit();
 
 const Dashboard = () => {
   const [value, loading, error] = useCollection(firestore.collectionGroup('directories'));

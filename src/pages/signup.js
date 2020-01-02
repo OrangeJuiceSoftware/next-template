@@ -6,8 +6,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 
-import firebaseInit from '../client-services/firebaseInit';
-const { auth, firestore } = firebaseInit();
+import { auth, firestore } from '../client-services/firebase';
 
 import { Row, Col, Typography } from 'antd';
 const { Title } = Typography;

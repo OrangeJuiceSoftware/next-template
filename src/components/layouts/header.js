@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import Router from 'next/router';
 
-import firebaseInit from '~/src/client-services/firebaseInit';
+import { auth, firestore } from '~/src/client-services/firebase';
 import { Layout, Row, Col, Menu, Icon, Dropdown, Button } from 'antd';
 
-
-const { auth, firestore } = firebaseInit();
 const { Header } = Layout;
 
 import { orange } from '@ant-design/colors';
