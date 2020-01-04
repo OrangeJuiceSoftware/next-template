@@ -8,8 +8,8 @@ import { Layout } from 'antd';
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
-    const ComponentWithUser = withUser(Component);
     const HeaderWithUser = withUser(Header);
+    const ComponentWithUser = withUser(Component);
 
     return (
       <Layout style={{ minHeight: '100vh' }}>

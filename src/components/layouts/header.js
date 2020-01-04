@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
+import { auth, firestore } from '~/src/services/firebase';
+
 import Router from 'next/router';
 
-import { auth, firestore } from '~/src/client-services/firebase';
 import { Layout, Row, Col, Menu, Icon, Dropdown, Button } from 'antd';
-
 const { Header } = Layout;
-
 import { orange } from '@ant-design/colors';
 
 const menu = (
@@ -24,7 +23,6 @@ const menu = (
 );
 
 const PageHeader = ({ user }) => {
-
   return (
     <Header style={{ padding: 0 }}>
       <Row type={'flex'} align={'middle'} justify={'space-between'}>
@@ -48,5 +46,3 @@ const PageHeader = ({ user }) => {
 };
 
 export default PageHeader;
-
-

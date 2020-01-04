@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
-import withUnlessAuthenticated from '~/src/components/hocs/withUnlessAuthenticated';
+import { auth, firestore } from '../services/firebase';
 
 import Head from 'next/head';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
-
-import { auth, firestore } from '../client-services/firebase';
 
 import { Row, Col, Typography } from 'antd';
 const { Title } = Typography;
@@ -14,13 +11,15 @@ const { Title } = Typography;
 import { Layout } from '~/src/components';
 import LoginForm from '~/src/components/forms/auth/login-form';
 
+import withUnlessAuthenticated from '~/src/components/hocs/withUnlessAuthenticated';
+
 const SignUpPage = () => {
   const router = useRouter();
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
     router.prefetch('/');
-  });
+  }, []);
 
   const signup = async ({ email, password }) => {
     try {

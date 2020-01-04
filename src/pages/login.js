@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
-
-import withUnlessAuthenticated from '~/src/components/hocs/withUnlessAuthenticated';
+import firebase, { auth, firestore } from '../services/firebase';
 
 import Head from 'next/head';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 
-import firebase, { auth, firestore } from '../client-services/firebase';
-
 import { Button, Col, Icon, Row, Typography } from 'antd';
 const { Text, Title } = Typography;
+import { geekblue } from '@ant-design/colors';
 
 import { Layout } from '~/src/components';
 import LoginForm from '~/src/components/forms/auth/login-form';
 
-import { geekblue } from '@ant-design/colors';
+import withUnlessAuthenticated from '~/src/components/hocs/withUnlessAuthenticated';
 
 const githubProvider = new firebase.auth.GithubAuthProvider();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
