@@ -76,7 +76,6 @@ const SignUpPage = () => {
         <link rel='icon' href='/favicon.ico' importance='low' />
       </Head>
 
-
       <Row style={{ marginTop: 50 }} justify={'center'} type={'flex'}>
         <Col>
           <Title>Blueprints</Title>
@@ -106,10 +105,8 @@ const SignUpPage = () => {
           </Link>
         </Col>
       </Row>
-
     </Layout>
   );
 };
-
 
 export default withUnlessAuthenticated(SignUpPage);

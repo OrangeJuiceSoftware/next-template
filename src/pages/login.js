@@ -100,7 +100,6 @@ const LoginPage = () => {
           </Link>
         </Col>
       </Row>
-
     </Layout>
   );
 };
