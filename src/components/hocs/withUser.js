@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth } from '~/src/client-services/firebase';
+import { auth } from '~/src/services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 export default (WrappedComponent) => {
