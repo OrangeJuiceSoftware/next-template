@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { auth, firestore } from '../services/firebase';
+import { firestore } from '../services/firebase';
 
 import { useCollection } from 'react-firebase-hooks/firestore';
 

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { auth, firestore } from '../services/firebase';
+import firebase, { auth, firestore } from '../services/firebase';
+
+import { useAuthRedirect } from '../hooks';
 
 import Head from 'next/head';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 
-import { Row, Col, Typography } from 'antd';
-const { Title } = Typography;
+import { Button, Col, Icon, Row, Typography } from 'antd';
+const { Text, Title } = Typography;
+import { geekblue } from '@ant-design/colors';
 
 import { Layout } from '~/src/components';
 import LoginForm from '~/src/components/forms/auth/login-form';
@@ -17,11 +20,14 @@ const SignUpPage = () => {
   const router = useRouter();
   const [errors, setErrors] = useState({});
 
+  const { signinWithGitHub, signinWithGoogle } = useAuthRedirect();
+
   useEffect(() => {
     router.prefetch('/');
   }, []);
 
-  const signup = async ({ email, password }) => {
+
+  const signupWithEmail = async ({ email, password }) => {
     try {
       await auth.createUserWithEmailAndPassword(email, password);
 
@@ -53,8 +59,27 @@ const SignUpPage = () => {
 
       <Row style={{ marginTop: 50 }} justify={'center'} type={'flex'}>
         <Col>
-          <Title>Welcom to the Jungle</Title>
-          <LoginForm onSubmit={signup} externalErrors={errors}/>
+          <Title>Blueprints</Title>
+
+          <Button
+            style={{ backgroundColor: 'black', fontSize: 20, color: 'white' }}
+            onClick={signinWithGitHub}
+            icon={'github'}
+            size={'large'}>
+
+            <Text style={{ color: 'white', fontSize: 14 }}>Continue With Github</Text>
+          </Button>
+
+          <Button
+            style={{ backgroundColor: geekblue[5], fontSize: 20, color: 'white' }}
+            onClick={signinWithGoogle}
+            icon={'google'}
+            size={'large'}>
+
+            <Text style={{ color: 'white', fontSize: 14 }}>Continue With Google</Text>
+          </Button>
+
+          <LoginForm actionText={'Sign Up'} onSubmit={signupWithEmail} externalErrors={errors}/>
 
           <Link href={'/login'}>
             <a>Login</a>
