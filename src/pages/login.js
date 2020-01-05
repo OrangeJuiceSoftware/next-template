@@ -20,7 +20,27 @@ const LoginPage = () => {
   const router = useRouter();
   const [errors, setErrors] = useState({});
 
-  const { signinWithGitHub, signinWithGoogle } = useAuthRedirect();
+  const [result, redirectError, { signinWithGitHub, signinWithGoogle }] = useAuthRedirect();
+
+  if (result) {
+    // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+    if (result.token) {
+      var token = result.credential.accessToken;
+    }
+
+    if (result.user) {
+      Router.push({ pathname: '/' });
+    }
+  }
+
+  if (redirectError) {
+    // var errorCode = error.code;
+    // var errorMessage = error.message;
+    // // The email of the user's account used.
+    // var email = error.email;
+    // // The firebase.auth.AuthCredential type that was used.
+    // var credential = error.credential;
+  }
 
   useEffect(() => {
     router.prefetch('/');
