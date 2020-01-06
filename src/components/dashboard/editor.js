@@ -2,57 +2,88 @@ import React, { useState } from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-markdown';
 import 'ace-builds/src-noconflict/theme-github';
-import markdownIt from 'markdown-it';
-import markdownItMermaid from 'markdown-it-mermaid';
+import { Col } from 'antd';
 
-import { Col, Form, Icon, Input, Button, Checkbox } from 'antd';
+import mermaid from 'mermaid';
+import unified from 'unified';
 
-const mdi = markdownIt();
-mdi.use(markdownItMermaid);
-mdi.mermaid.loadPreferences({
-  get: key => {
-    if (key === 'mermaid-theme') {
-      return 'default';
-    } else if (key === 'gantt-axis-format') {
-      return '%Y/%m/%d';
-    } else {
-      return undefined;
-    }
-  }
+// Unified plugins
+import html from 'remark-html';
+import markdown from 'remark-parse';
+import mermaidRmk from '../../parser';
+
+mermaid.initialize({
+  startOnLoad: true
 });
 
 export default () => {
-  const [raw, setRaw] = useState(`
-  # This is a header And 
+  const [rawContent, setRawContent] = useState(`
+  # This is a header And
   this is a paragraph
 
   \`\`\`mermaid
-graph TD
-    A[Christmas] -->|Get money| B(Go shopping)
-    B --> C{Let me think}
-    C -->|One| D[Laptop]
-    C -->|Two| E[iPhone]
-    C -->|Three| F[Car]
-\`\`\`
+  gantt
+    dateFormat  YYYY-MM-DD
+    title Adding GANTT diagram functionality to mermaid
+
+    section A section
+    Completed task            :done,    des1, 2014-01-06,2014-01-08
+    Active task               :active,  des2, 2014-01-09, 3d
+    Future task               :         des3, after des2, 5d
+    Future task2              :         des4, after des3, 5d
+  \`\`\`
+
+  \`\`\`mermaid
+  gantt
+    dateFormat  YYYY-MM-DD
+    title Adding GANTT diagram functionality to mermaid
+
+    section A section
+    Completed task            :done,    des1, 2014-01-06,2014-01-08
+    Active task               :active,  des2, 2014-01-09, 3d
+    Future task               :         des3, after des2, 5d
+    Future task2              :         des4, after des3, 5d
+  \`\`\`
 `);
 
-  const markdown = mdi.render(raw);
+  const updateRawContent = (raw) => {
+    setRawContent(raw);
+    mermaid.init(); //Mermaid API is shit... No way around this unless you have the IDs of the divs...
+  };
 
-  return(
+  const [htmlContent, setHtmlContent] = useState('');
+  unified()
+    .use(markdown)
+    .use(mermaidRmk)
+    .use(html)
+    .process(rawContent, (err, file) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+
+      console.log(file.contents);
+      if (htmlContent !== file.contents) {
+        setHtmlContent(file.contents);
+      }
+    });
+
+  return (
     <>
       <Col span={12}>
         <AceEditor
-          placeholder="Placeholder Text"
-          mode="markdown"
-          theme="github"
-          name="blah2"
           // onLoad={this.onLoad}
-          onChange={setRaw}
           fontSize={14}
-          showPrintMargin={true}
-          showGutter={true}
           highlightActiveLine={true}
-          value={raw}
+          mode={'markdown'}
+          name={'blah2'}
+          onChange={updateRawContent}
+          debounceChangePeriod={50}
+          placeholder={'Placeholder Text'}
+          showGutter={true}
+          showPrintMargin={true}
+          theme={'github'}
+          value={rawContent}
           setOptions={{
             // enableBasicAutocompletion: false,
             // enableLiveAutocompletion: false,
@@ -61,11 +92,10 @@ graph TD
             // tabSize: 2
           }}/>
       </Col>
+
       <Col span={12}>
-        <div style={{ height: 500 }} dangerouslySetInnerHTML={{ __html:markdown }}></div>
+        <div style={{ height: 500 }} dangerouslySetInnerHTML={{ __html:htmlContent }}></div>
       </Col>
     </>
   );
 };
-
-

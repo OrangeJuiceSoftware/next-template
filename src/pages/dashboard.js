@@ -20,12 +20,8 @@ import withNeedsAuthentication from '~/src/components/hocs/withNeedsAuthenticati
 const Dashboard = () => {
   const [value, loading, error] = useCollection(firestore.collectionGroup('directories'));
 
-  if (!loading) {
-    const data = value.docs.map((document) => {
-      return document.data();
-    });
-
-
+  if (!loading && value) {
+    const data = value.docs.map((document) => document.data());
     data.map(async (doc) => {
       if (doc.root) {
         const parent = await doc.root.get();
