@@ -1,4 +1,3 @@
-// this is going to be the landing page
 import React from 'react';
 
 import Head from 'next/head';
@@ -7,7 +6,7 @@ import Link from 'next/link';
 import { Layout } from '~/src/components';
 import { Button } from 'antd';
 
-const Home = () => {
+const LandingPage = () => {
   return (
     <Layout>
       <Head>
@@ -22,4 +21,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default LandingPage;

@@ -1,34 +1,21 @@
-
 import React, { useEffect } from 'react';
+import { firestore } from '../services/firebase';
 
 import { useCollection } from 'react-firebase-hooks/firestore';
-import axios from 'axios';
-
-import firebaseInit from '../client-services/firebaseInit';
-
-import withNeedsAuthentication from '~/src/components/hocs/withNeedsAuthentication';
 
 import Head from 'next/head';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
+import { Button, Col, Icon, Menu, Row, Typography } from 'antd';
+const { SubMenu } = Menu;
+
 import { Layout } from '~/src/components';
-
-
 const Editor = dynamic(import('~/src/components/dashboard/editor'), {
   ssr: false
 });
 
-import { Button, Col, Icon, Menu, Row, Typography } from 'antd';
-import { async } from '@firebase/util';
-const { SubMenu } = Menu;
-
-console.log('are we in the browser');
-
-console.log(process.browser);
-
-
-const { auth, firestore } = firebaseInit();
+import withNeedsAuthentication from '~/src/components/hocs/withNeedsAuthentication';
 
 const Dashboard = () => {
   const [value, loading, error] = useCollection(firestore.collectionGroup('directories'));
@@ -43,11 +30,9 @@ const Dashboard = () => {
       if (doc.root) {
         const parent = await doc.root.get();
         // console.log(parent.ref);
-
         // console.log(parent.data());
       }
     });
-    console.log(data);
   }
 
   const generateSidebarItems = () => {

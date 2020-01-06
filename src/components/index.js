@@ -3,7 +3,7 @@ import Header from './layouts/header';
 import Footer from './layouts/footer';
 import Layout from './layouts/layout';
 
-module.exports = {
+export {
   Footer,
   Header,
   Layout

@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
+import { auth, firestore } from '~/src/services/firebase';
+
 import Router from 'next/router';
 
-import firebaseInit from '~/src/client-services/firebaseInit';
 import { Layout, Row, Col, Menu, Icon, Dropdown, Button } from 'antd';
-
-
-const { auth, firestore } = firebaseInit();
 const { Header } = Layout;
-
 import { orange } from '@ant-design/colors';
 
 const menu = (
   <Menu style={{ padding: 16 }}>
-
     <Menu.Item onClick={() => Router.push('/account-settings')} key="account">
       <Icon type="setting" />
       Account
@@ -26,7 +22,6 @@ const menu = (
 );
 
 const PageHeader = ({ user }) => {
-
   return (
     <Header style={{ padding: 0 }}>
       <Row type={'flex'} align={'middle'} justify={'space-between'}>
@@ -50,5 +45,3 @@ const PageHeader = ({ user }) => {
 };
 
 export default PageHeader;
-
-

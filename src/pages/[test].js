@@ -1,17 +1,13 @@
-// this is going to be the landing page
-
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import { auth, firestore } from '../services/firebase';
 
 import Head from 'next/head';
 import Link from 'next/link';
 
-import { Layout } from '~/src/components';
 import { Button } from 'antd';
 
-
-import firebaseInit from '../client-services/firebaseInit';
-const { auth, firestore } = firebaseInit();
+import { Layout } from '~/src/components';
 
 const Home = ({ data }) => {
 
