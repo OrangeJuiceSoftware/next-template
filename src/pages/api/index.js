@@ -1,17 +1,14 @@
-import firebaseInit from './_services/firebaseInit';
+import admin, { auth, firestore } from './_services/firebase';
 import Router from './_services/Router.js';
 
-const { firestore } = firebaseInit();
 
 const router = Router();
 
 const middleware = (req, res, next) => {
-  req.fuckme = 'in the pussy?';
   return next(req, res);
 };
 
 router.get(middleware, (req, res) => {
-  console.log(req.fuckme);
   return res.status(201).json({ method: 'get in my as' });
 });
 

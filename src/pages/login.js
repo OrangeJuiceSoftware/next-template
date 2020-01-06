@@ -1,74 +1,52 @@
 import React, { useState, useEffect } from 'react';
+import firebase, { auth, firestore } from '../services/firebase';
 
-import withUnlessAuthenticated from '~/src/components/hocs/withUnlessAuthenticated';
+import { useAuthRedirect } from '../hooks';
 
 import Head from 'next/head';
 import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 
-import firebaseInit from '../client-services/firebaseInit';
-const { auth, firebase, firestore } = firebaseInit();
-
 import { Button, Col, Icon, Row, Typography } from 'antd';
 const { Text, Title } = Typography;
+import { geekblue } from '@ant-design/colors';
 
 import { Layout } from '~/src/components';
 import LoginForm from '~/src/components/forms/auth/login-form';
 
-import { geekblue } from '@ant-design/colors';
-
-
-const githubProvider = new firebase.auth.GithubAuthProvider();
-const googleProvider = new firebase.auth.GoogleAuthProvider();
+import withUnlessAuthenticated from '~/src/components/hocs/withUnlessAuthenticated';
 
 const LoginPage = () => {
   const router = useRouter();
   const [errors, setErrors] = useState({});
 
+  const [result, redirectError, { signinWithGitHub, signinWithGoogle }] = useAuthRedirect();
+
+  if (result) {
+    // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+    if (result.token) {
+      var token = result.credential.accessToken;
+    }
+
+    if (result.user) {
+      Router.push({ pathname: '/' });
+    }
+  }
+
+  if (redirectError) {
+    // var errorCode = error.code;
+    // var errorMessage = error.message;
+    // // The email of the user's account used.
+    // var email = error.email;
+    // // The firebase.auth.AuthCredential type that was used.
+    // var credential = error.credential;
+  }
+
   useEffect(() => {
     router.prefetch('/');
-  });
+  }, []);
 
-  useEffect(() => {
-    auth.getRedirectResult().then(function(result) {
-      if (result.credential) {
-        // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-        var token = result.credential.accessToken;
-        // ...
-      }
-      // The signed-in user info.
-      var user = result.user;
-
-      if (user) {
-        console.log('redirected from the redirect');
-        Router.push({ pathname: '/' });
-      }
-
-
-    }).catch(function(error) {
-
-      console.log(error);
-
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-    });
-  });
-
-  const loginWithGitHub = () => {
-    auth.signInWithRedirect(githubProvider);
-  };
-
-  const loginWithGoogle = () => {
-    auth.signInWithRedirect(googleProvider);
-  };
-
-  const login = async ({ email, password }) => {
+  const loginWithEmail = async ({ email, password }) => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
 
@@ -95,11 +73,11 @@ const LoginPage = () => {
 
       <Row style={{ marginTop: 50 }} justify={'center'} type={'flex'}>
         <Col>
-          <Title>Welcom to the Jungle</Title>
+          <Title>Blueprints</Title>
 
           <Button
             style={{ backgroundColor: 'black', fontSize: 20, color: 'white' }}
-            onClick={loginWithGitHub}
+            onClick={signinWithGitHub}
             icon={'github'}
             size={'large'}>
 
@@ -108,21 +86,20 @@ const LoginPage = () => {
 
           <Button
             style={{ backgroundColor: geekblue[5], fontSize: 20, color: 'white' }}
-            onClick={loginWithGoogle}
+            onClick={signinWithGoogle}
             icon={'google'}
             size={'large'}>
 
             <Text style={{ color: 'white', fontSize: 14 }}>Continue With Google</Text>
           </Button>
 
-          <LoginForm onSubmit={login} externalErrors={errors}/>
+          <LoginForm actionText={'Login'} onSubmit={loginWithEmail} externalErrors={errors}/>
 
           <Link href={'/signup'}>
             <a>Signup</a>
           </Link>
         </Col>
       </Row>
-
     </Layout>
   );
 };

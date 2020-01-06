@@ -3,7 +3,7 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const NormalLoginForm = ({ form, onSubmit, externalErrors = {} }) => {
+const NormalLoginForm = ({ form, onSubmit, actionText, externalErrors = {} }) => {
   const { getFieldDecorator } = form;
 
   const handleSubmit = e => {
@@ -57,18 +57,12 @@ const NormalLoginForm = ({ form, onSubmit, externalErrors = {} }) => {
       </Form.Item>
 
       <Form.Item>
-
-        {getFieldDecorator('remember', {
-          valuePropName: 'checked',
-          initialValue: true
-        })(<Checkbox>Remember me</Checkbox>)}
-
-        <a style={{ float: 'right' }} className="login-form-forgot" href="">
+        <a className="login-form-forgot" href="">
           Forgot password
         </a>
 
         <Button style={{ width: '100%' }} type="primary" htmlType="submit" className="login-form-button">
-          Log in
+          {actionText}
         </Button>
 
       </Form.Item>
