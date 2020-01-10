@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import firebase, { auth, firestore } from '../services/firebase';
+import firebase, { auth, firestore } from 'services/firebase';
 
-import { useAuthRedirect } from '../hooks';
+import { useAuthRedirect } from 'hooks';
 
 import Head from 'next/head';
 import Link from 'next/link';
@@ -11,10 +11,10 @@ import { Button, Col, Icon, Row, Typography } from 'antd';
 const { Text, Title } = Typography;
 import { geekblue } from '@ant-design/colors';
 
-import { Layout } from '~/src/components';
-import LoginForm from '~/src/components/forms/auth/login-form';
+import { Layout } from 'components';
+import { AuthForm } from 'forms';
 
-import withUnlessAuthenticated from '~/src/components/hocs/withUnlessAuthenticated';
+import { mustNotBeAuthenticated } from 'hocs';
 
 const SignUpPage = () => {
   const router = useRouter();
@@ -29,7 +29,7 @@ const SignUpPage = () => {
     }
 
     if (result.user) {
-      Router.push({ pathname: '/' });
+      Router.push({ pathname: '/dashboard' });
     }
   }
 
@@ -43,7 +43,7 @@ const SignUpPage = () => {
   }
 
   useEffect(() => {
-    router.prefetch('/');
+    router.prefetch('/dashboard');
   }, []);
 
 
@@ -54,7 +54,7 @@ const SignUpPage = () => {
       // TODO: create firestore user
 
       // send them to the home page
-      Router.push({ pathname: '/' });
+      Router.push({ pathname: '/dashboard' });
     } catch (error) {
       // if firestore user failed logout
 
@@ -98,7 +98,7 @@ const SignUpPage = () => {
             <Text style={{ color: 'white', fontSize: 14 }}>Continue With Google</Text>
           </Button>
 
-          <LoginForm actionText={'Sign Up'} onSubmit={signupWithEmail} externalErrors={errors}/>
+          <AuthForm actionText={'Sign Up'} onSubmit={signupWithEmail} externalErrors={errors}/>
 
           <Link href={'/login'}>
             <a>Login</a>
@@ -109,4 +109,4 @@ const SignUpPage = () => {
   );
 };
 
-export default withUnlessAuthenticated(SignUpPage);
+export default mustNotBeAuthenticated(SignUpPage);

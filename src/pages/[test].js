@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import { auth, firestore } from '../services/firebase';
+import { auth, firestore } from 'services/firebase';
 
 import Head from 'next/head';
 import Link from 'next/link';
 
 import { Button } from 'antd';
 
-import { Layout } from '~/src/components';
+import { Layout } from 'components';
 
 const Home = ({ data }) => {
 

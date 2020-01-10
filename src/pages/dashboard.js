@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { firestore } from '../services/firebase';
+import { firestore } from 'services/firebase';
 
 import { useCollection } from 'react-firebase-hooks/firestore';
 
@@ -10,12 +10,13 @@ import dynamic from 'next/dynamic';
 import { Button, Col, Icon, Menu, Row, Typography } from 'antd';
 const { SubMenu } = Menu;
 
-import { Layout } from '~/src/components';
-const Editor = dynamic(import('~/src/components/dashboard/editor'), {
+import { Layout } from 'components';
+
+const Editor = dynamic(import('components/editor'), {
   ssr: false
 });
 
-import withNeedsAuthentication from '~/src/components/hocs/withNeedsAuthentication';
+import { mustBeAuthenticated } from 'hocs';
 
 const Dashboard = () => {
   const [value, loading, error] = useCollection(firestore.collectionGroup('directories'));
@@ -67,4 +68,4 @@ const Dashboard = () => {
   );
 };
 
-export default withNeedsAuthentication(Dashboard);
+export default mustBeAuthenticated(Dashboard);

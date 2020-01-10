@@ -1,6 +1,6 @@
 import React from 'react';
-import withUser from '~/src/components/hocs/withUser';
-import Header from '~/src/components/layouts/header';
+import { withUser } from 'hocs';
+import { Header } from 'components';
 
 import { Layout } from 'antd';
 

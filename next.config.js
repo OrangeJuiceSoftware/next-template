@@ -6,8 +6,13 @@ const path = require('path')
 
 // Where your antd-custom.less file lives
 const themeVariables = lessToJS(
-  fs.readFileSync(path.resolve(__dirname, './assets/less/antd-custom.less'), 'utf8')
+  fs.readFileSync(path.resolve(__dirname, './src/assets/less/antd-custom.less'), 'utf8')
 )
+
+// https://flaviocopes.com/nextjs-analyze-app-bundle/
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+})
 
 module.exports = withLess({
   env: {
@@ -38,6 +43,17 @@ module.exports = withLess({
         use: 'null-loader',
       })
     }
+
+    const aliases = config.resolve.alias;
+
+    aliases['~'] = path.resolve(__dirname);
+    aliases['components'] = path.resolve(__dirname + '/src/components');
+    aliases['forms'] = path.resolve(__dirname + '/src/components/forms');
+    aliases['hocs'] = path.resolve(__dirname + '/src/hocs');
+    aliases['hooks'] = path.resolve(__dirname + '/src/hooks');
+    aliases['services'] = path.resolve(__dirname + '/src/services');
+    aliases['src'] = path.resolve(__dirname + '/src');
+
 
     return config
   },

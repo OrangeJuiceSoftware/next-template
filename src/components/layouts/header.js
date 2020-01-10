@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { auth, firestore } from '~/src/services/firebase';
+import { auth, firestore } from 'services/firebase';
 
 import Router from 'next/router';
 

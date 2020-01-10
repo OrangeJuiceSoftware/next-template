@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { auth, firestore } from '../services/firebase';
+import { auth, firestore } from 'services/firebase';
 
 import Head from 'next/head';
 import Link from 'next/link';
 
-import { Layout } from '~/src/components';
+import { Layout } from 'components';
 import { Button } from 'antd';
 
 const AccountSettings = () => {

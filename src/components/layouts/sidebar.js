@@ -11,5 +11,4 @@ const Sidebar = ({ width, items, style }) => {
   );
 };
 
-
 export default Sidebar;

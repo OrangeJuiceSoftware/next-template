@@ -3,7 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import { Layout } from '~/src/components';
+import { Layout } from 'components';
 import { Button } from 'antd';
 
 const LandingPage = () => {

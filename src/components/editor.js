@@ -10,7 +10,7 @@ import unified from 'unified';
 // Unified plugins
 import html from 'remark-html';
 import markdown from 'remark-parse';
-import mermaidRmk from '../../parser';
+import mermaidRmk from '../parser';
 
 mermaid.initialize({
   startOnLoad: true
