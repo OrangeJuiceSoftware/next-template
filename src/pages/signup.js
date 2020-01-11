@@ -14,7 +14,7 @@ import { geekblue } from '@ant-design/colors';
 import { Layout } from 'components';
 import { AuthForm } from 'forms';
 
-import { mustNotBeAuthenticated } from 'hocs';
+import { mustNotBeAuthenticated } from 'middlewares';
 
 const SignUpPage = () => {
   const router = useRouter();

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "now": "now dev",
-    "deploy": "now",
+    "deploy:staging": "now -A now.staging.json",
+    "deploy:prod": "now --prod",
     "analyze": "cross-env ANALYZE=true next build",
     "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
