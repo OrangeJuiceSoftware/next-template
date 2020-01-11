@@ -1,5 +1,10 @@
 {
   "env": {
-    "API_URL": "http://localhost:3000"
+    "API_URL": "@api_url"
+  },
+  "build": {
+    "env": {
+      "API_URL": "@api_url"
+    }
   }
 }

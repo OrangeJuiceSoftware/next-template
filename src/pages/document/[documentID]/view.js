@@ -12,9 +12,13 @@ const { SubMenu } = Menu;
 
 import { Layout } from 'components';
 
+const Editor = dynamic(import('components/editor'), {
+  ssr: false
+});
+
 import { mustBeAuthenticated } from 'middlewares';
 
-const Dashboard = () => {
+const ViewerPage = () => {
   const [value, loading, error] = useCollection(firestore.collectionGroup('directories'));
 
   if (!loading && value) {
@@ -53,15 +57,15 @@ const Dashboard = () => {
   return (
     <Layout sidebarItems={generateSidebarItems()}>
       <Head>
-        <title>Dashboard</title>
+        <title>ViewerPage</title>
         <link rel='icon' href='/favicon.ico' importance='low'/>
       </Head>
 
       <Row style={{ height: 150 }}>
-        Hi
+        <Editor></Editor>
       </Row>
     </Layout>
   );
 };
 
-export default mustBeAuthenticated(Dashboard);
+export default mustBeAuthenticated(ViewerPage);
