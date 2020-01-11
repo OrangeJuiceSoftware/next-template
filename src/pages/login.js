@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import firebase, { auth, firestore } from 'services/firebase';
+import { auth } from 'services/firebase';
 
 import { useAuthRedirect } from 'hooks';
+import { mustNotBeAuthenticated } from 'middlewares';
 
 import Head from 'next/head';
 import Link from 'next/link';
@@ -14,31 +15,28 @@ import { geekblue } from '@ant-design/colors';
 import { Layout } from 'components';
 import { AuthForm } from 'forms';
 
-import { mustNotBeAuthenticated } from 'middlewares';
 
 const LoginPage = () => {
   const router = useRouter();
+  const [result, redirectError, { signInWithGitHub, signInWithGoogle }] = useAuthRedirect();
   const [errors, setErrors] = useState({});
 
-  const [result, redirectError, { signinWithGitHub, signinWithGoogle }] = useAuthRedirect();
-
-  if (result) {
-    // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-    if (result.token) {
-      var token = result.credential.accessToken;
-    }
-
-    if (result.user) {
-      Router.push({ pathname: '/dashboard' });
-    }
+  // this action will get be duplicated by the middleware but lets leave it here for now
+  // result also contains the token
+  if (result && result.user) {
+    Router.push({ pathname: '/dashboard' });
   }
 
+  // https://firebase.google.com/docs/reference/js/firebase.auth.Auth.html#getredirectresult
   if (redirectError) {
+    // auth/email-already-in-use
+    // auth/credential-already-in-use
+    // auth/account-exists-with-different-credential
+
+
     // var errorCode = error.code;
     // var errorMessage = error.message;
-    // // The email of the user's account used.
     // var email = error.email;
-    // // The firebase.auth.AuthCredential type that was used.
     // var credential = error.credential;
   }
 
@@ -53,7 +51,11 @@ const LoginPage = () => {
       // send them to the home page
       Router.push({ pathname: '/dashboard' });
     } catch (error) {
-      console.log(error);
+
+      // auth/user-disabled;
+      // auth/user-not-found
+      // auth/wrong-password
+
       // set errors... this will pass the errors into the form
       // setErrors({
       //   form: 'sfdsf',
@@ -77,7 +79,7 @@ const LoginPage = () => {
 
           <Button
             style={{ backgroundColor: 'black', fontSize: 20, color: 'white' }}
-            onClick={signinWithGitHub}
+            onClick={signInWithGitHub}
             icon={'github'}
             size={'large'}>
 
@@ -86,7 +88,7 @@ const LoginPage = () => {
 
           <Button
             style={{ backgroundColor: geekblue[5], fontSize: 20, color: 'white' }}
-            onClick={signinWithGoogle}
+            onClick={signInWithGoogle}
             icon={'google'}
             size={'large'}>
 

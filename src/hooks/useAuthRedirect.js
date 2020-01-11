@@ -14,11 +14,11 @@ export default () => {
       .catch(setRedirectError);
   }, []);
 
-  const signinWithGitHub = () => {
+  const signInWithGitHub = () => {
     auth.signInWithRedirect(githubProvider);
   };
 
-  const signinWithGoogle = () => {
+  const signInWithGoogle = () => {
     auth.signInWithRedirect(googleProvider);
   };
 
@@ -26,8 +26,8 @@ export default () => {
     result,
     redirectError,
     {
-      signinWithGitHub,
-      signinWithGoogle
+      signInWithGitHub,
+      signInWithGoogle
     }
   ];
 };

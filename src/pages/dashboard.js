@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { firestore } from 'services/firebase';
 
 import { useCollection } from 'react-firebase-hooks/firestore';
+import { mustBeAuthenticated } from 'middlewares';
 
 import Head from 'next/head';
 import Link from 'next/link';
@@ -11,8 +12,6 @@ import { Button, Col, Icon, Menu, Row, Typography } from 'antd';
 const { SubMenu } = Menu;
 
 import { Layout } from 'components';
-
-import { mustBeAuthenticated } from 'middlewares';
 
 const Dashboard = () => {
   const [value, loading, error] = useCollection(firestore.collectionGroup('directories'));

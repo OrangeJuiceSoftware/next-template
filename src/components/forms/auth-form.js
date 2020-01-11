@@ -13,8 +13,6 @@ const NormalLoginForm = ({ form, onSubmit, actionText, externalErrors = {} }) =>
       if (!err) {
         return onSubmit(values);
       }
-
-      return onSubmit(values);
     });
   };
 
