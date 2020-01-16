@@ -49,6 +49,7 @@ module.exports = withLess({
     aliases['~'] = path.resolve(__dirname);
     aliases['components'] = path.resolve(__dirname + '/src/components');
     aliases['forms'] = path.resolve(__dirname + '/src/components/forms');
+    aliases['layouts'] = path.resolve(__dirname + '/src/components/layouts');
     aliases['middlewares'] = path.resolve(__dirname + '/src/middlewares');
     aliases['hooks'] = path.resolve(__dirname + '/src/hooks');
     aliases['services'] = path.resolve(__dirname + '/src/services');

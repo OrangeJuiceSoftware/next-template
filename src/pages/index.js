@@ -1,22 +1,15 @@
 import React from 'react';
 
-import Head from 'next/head';
-import Link from 'next/link';
+import Layout from 'layouts/default-layout';
+import { Seo, Link } from 'components';
 
-import { Layout } from 'components';
 import { Button } from 'antd';
 
 const LandingPage = () => {
   return (
     <Layout>
-      <Head>
-        <title>Home</title>
-        <link rel='icon' href='/favicon.ico' importance='low'/>
-      </Head>
-
-      <Link href={'/'}>
-        <a>home</a>
-      </Link>
+      <Seo title={'Blueprints'}/>
+      <Link href={'/'}>home</Link>
     </Layout>
   );
 };

@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 import { firestore } from 'services/firebase';
-
 import { useCollection } from 'react-firebase-hooks/firestore';
+
 import { mustBeAuthenticated } from 'middlewares';
 
-import Head from 'next/head';
-import Link from 'next/link';
+import Layout from 'layouts/default-layout';
+import { Seo, Link } from 'components';
 
 import { Button, Card, Col, Icon, Menu, Row, Typography } from 'antd';
 const { SubMenu } = Menu;
-
-import { Layout } from 'components';
 
 const Document = () => {
   const [value, loading, error] = useCollection(firestore.collectionGroup('directories'));
@@ -28,10 +26,7 @@ const Document = () => {
 
   return (
     <Layout>
-      <Head>
-        <title>Dashboard</title>
-        <link rel='icon' href='/favicon.ico' importance='low'/>
-      </Head>
+      <Seo title={'Documents'}/>
 
       <Row>
         <Col span={8}>

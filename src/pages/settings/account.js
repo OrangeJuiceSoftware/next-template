@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import { auth, firestore } from 'services/firebase';
-import { mustBeAuthenticated } from 'middlewares';
-import Head from 'next/head';
-import Link from 'next/link';
 
-import { Layout } from 'components';
+import { mustBeAuthenticated } from 'middlewares';
+
+
+import Layout from 'layouts/settings-layout';
+import { Seo, Link } from 'components';
 import { Button, Icon, Menu } from 'antd';
-const { SubMenu } = Menu;
 
 const AccountSettings = () => {
+
 
   // be able to see their signin method
 
@@ -64,38 +65,11 @@ const AccountSettings = () => {
   // extendable
 
 
-  const renderSidebarItems = () => {
-    return (
-      <Menu style={{ borderRight: 'none' }} selectable={false} mode={'inline'}>
-        <SubMenu
-          key="sub1"
-          title={
-            <span>
-              <Icon type="folder" />
-              <span>Navigation One</span>
-            </span>
-          }
-        >
-          <Menu.Item key="1">Option 1</Menu.Item>
-          <Menu.Item key="2">Option 2</Menu.Item>
-          <Menu.Item key="3">Option 3</Menu.Item>
-          <Menu.Item key="4">Option 4</Menu.Item>
-        </SubMenu>
-        <Menu.Item key="12"><Icon type="file-text"/>Option 12</Menu.Item>
-      </Menu>
-    );
-  };
-
   return (
-    <Layout renderSidebarItems={renderSidebarItems}>
-      <Head>
-        <title>Home</title>
-        <link rel='icon' href='/favicon.ico' importance='low'/>
-      </Head>
+    <Layout>
+      <Seo title={'Account'}/>
 
-      <Link href={'/account'}>
-        <a>oh my pussy hurts</a>
-      </Link>
+      <p>account</p>
     </Layout>
   );
 };

@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import firebase, { auth, firestore } from 'services/firebase';
+import Router, { useRouter } from 'next/router';
 
 import { useAuthRedirect } from 'hooks';
 import { mustNotBeAuthenticated } from 'middlewares';
 
-import Head from 'next/head';
-import Link from 'next/link';
-import Router, { useRouter } from 'next/router';
+import Layout from 'layouts/default-layout';
+import { Seo, Link } from 'components';
 
 import { Button, Col, Icon, Row, Typography } from 'antd';
 const { Text, Title } = Typography;
 import { geekblue } from '@ant-design/colors';
 
-import { Layout } from 'components';
 import { AuthForm } from 'forms';
 
 const SignUpPage = () => {
@@ -67,10 +66,7 @@ const SignUpPage = () => {
 
   return (
     <Layout>
-      <Head>
-        <title>Signup</title>
-        <link rel='icon' href='/favicon.ico' importance='low' />
-      </Head>
+      <Seo title={'Signup'}/>
 
       <Row style={{ marginTop: 50 }} justify={'center'} type={'flex'}>
         <Col>

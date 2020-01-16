@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { firestore } from 'services/firebase';
-
 import { useCollection } from 'react-firebase-hooks/firestore';
 
-import Head from 'next/head';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
+
+import Layout from 'layouts/default-layout';
+import { Seo, Link } from 'components';
+
 
 import { Button, Col, Icon, Menu, Row, Typography } from 'antd';
 const { SubMenu } = Menu;
 
-import { Layout } from 'components';
 
 const Editor = dynamic(import('components/editor'), {
   ssr: false
@@ -34,10 +34,7 @@ const EditorPage = () => {
 
   return (
     <Layout>
-      <Head>
-        <title>EditorPage</title>
-        <link rel='icon' href='/favicon.ico' importance='low'/>
-      </Head>
+      <Seo title={'Editor'}/>
 
       <Row style={{ height: 150 }}>
         <Editor></Editor>
