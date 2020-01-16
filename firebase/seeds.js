@@ -42,7 +42,7 @@ const seedFunction = async () => {
   });
 
   [1, 2, 3, 4, 5].forEach(async (number) => {
-    const directoryDoc = await personalWorkSpaceDoc.collection('directories').add({
+    const directoryDoc = await firestore.collection('directories').add({
       workspaceRef: personalWorkSpaceDoc,
       parentRef: null,
       name: `My Directory ${number}`
