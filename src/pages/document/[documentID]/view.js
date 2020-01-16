@@ -32,30 +32,9 @@ const ViewerPage = () => {
     });
   }
 
-  const generateSidebarItems = () => {
-    return (
-      <Menu style={{ borderRight: 'none' }} selectable={false} mode={'inline'}>
-        <SubMenu
-          key="sub1"
-          title={
-            <span>
-              <Icon type="folder" />
-              <span>Navigation One</span>
-            </span>
-          }
-        >
-          <Menu.Item key="1">Option 1</Menu.Item>
-          <Menu.Item key="2">Option 2</Menu.Item>
-          <Menu.Item key="3">Option 3</Menu.Item>
-          <Menu.Item key="4">Option 4</Menu.Item>
-        </SubMenu>
-        <Menu.Item key="12"><Icon type="file-text"/>Option 12</Menu.Item>
-      </Menu>
-    );
-  };
 
   return (
-    <Layout sidebarItems={generateSidebarItems()}>
+    <Layout>
       <Head>
         <title>ViewerPage</title>
         <link rel='icon' href='/favicon.ico' importance='low'/>

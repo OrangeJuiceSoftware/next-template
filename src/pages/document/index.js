@@ -2,23 +2,17 @@ import React, { useEffect } from 'react';
 import { firestore } from 'services/firebase';
 
 import { useCollection } from 'react-firebase-hooks/firestore';
+import { mustBeAuthenticated } from 'middlewares';
 
 import Head from 'next/head';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 
-import { Button, Col, Icon, Menu, Row, Typography } from 'antd';
+import { Button, Card, Col, Icon, Menu, Row, Typography } from 'antd';
 const { SubMenu } = Menu;
 
 import { Layout } from 'components';
 
-const Editor = dynamic(import('components/editor'), {
-  ssr: false
-});
-
-import { mustBeAuthenticated } from 'middlewares';
-
-const EditorPage = () => {
+const Document = () => {
   const [value, loading, error] = useCollection(firestore.collectionGroup('directories'));
 
   if (!loading && value) {
@@ -35,15 +29,23 @@ const EditorPage = () => {
   return (
     <Layout>
       <Head>
-        <title>EditorPage</title>
+        <title>Dashboard</title>
         <link rel='icon' href='/favicon.ico' importance='low'/>
       </Head>
 
-      <Row style={{ height: 150 }}>
-        <Editor></Editor>
+      <Row>
+        <Col span={8}>
+          <Card title="Default size card" extra={<a href="#">More</a>} style={{ width: 300 }}>
+            <p>Card content</p>
+            <p>Card content</p>
+            <p>Card content</p>
+          </Card>
+        </Col>
+        <Col span={8}>col-8</Col>
+        <Col span={8}>col-8</Col>
       </Row>
     </Layout>
   );
 };
 
-export default mustBeAuthenticated(EditorPage);
+export default mustBeAuthenticated(Document);
