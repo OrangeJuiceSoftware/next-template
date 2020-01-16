@@ -6,10 +6,10 @@ import Sidebar from './sidebar';
 
 const SIDEBAR_WIDTH = 250;
 
-const PageLayout = ({ children, sidebarItems }) => {
+const PageLayout = ({ children, renderSidebarItems }) => {
   return (
     <Layout>
-      {sidebarItems && <Sidebar width={SIDEBAR_WIDTH} items={sidebarItems} style={{
+      {renderSidebarItems && <Sidebar width={SIDEBAR_WIDTH} renderItems={renderSidebarItems} style={{
         overflow: 'auto',
         height: 'calc(100vh - 64px)'
       }}/>}

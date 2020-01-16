@@ -3,10 +3,10 @@ import React from 'react';
 import { Layout, Row, Col, Menu, Icon } from 'antd';
 const { Sider } = Layout;
 
-const Sidebar = ({ width, items, style }) => {
+const Sidebar = ({ width, renderItems, style }) => {
   return (
     <Sider theme={'light'} width={width} style={style}>
-      {items}
+      {renderItems()}
     </Sider>
   );
 };
