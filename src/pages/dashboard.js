@@ -12,7 +12,6 @@ import { Button, Card, Col, Icon, Menu, Row, Typography } from 'antd';
 import { Layout } from 'components';
 
 const Dashboard = () => {
-
   return (
     <Layout>
       <Head>

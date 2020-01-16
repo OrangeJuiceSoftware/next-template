@@ -9,7 +9,7 @@ import { orange } from '@ant-design/colors';
 
 const menu = (
   <Menu style={{ padding: 16 }}>
-    <Menu.Item onClick={() => Router.push('/account-settings')} key="account">
+    <Menu.Item onClick={() => Router.push('/settings/account')} key="account">
       <Icon type="setting" />
       Account
     </Menu.Item>
