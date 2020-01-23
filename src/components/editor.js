@@ -1,72 +1,92 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-markdown';
 import 'ace-builds/src-noconflict/theme-github';
+
+import { useMarkdownParser } from 'hooks';
 import { Col } from 'antd';
 
-import mermaid from 'mermaid';
-import unified from 'unified';
+const sampleMarkDown = `
+# This is a header And
+this is a paragraph
 
-// Unified plugins
-import html from 'remark-html';
-import markdown from 'remark-parse';
-import mermaidRmk from '../parser';
+\`\`\`mermaid
+graph TD
+  A[Christmas] -->|Get money| B(Go shopping)
+  B --> C{Let me think}
+  C -->|One| D[Laptop]
+  C -->|Two| E[iPhone]
+  C -->|Three| F[fa:fa-car Car]
+\`\`\`
 
-mermaid.initialize({
-  startOnLoad: true
-});
+\`\`\`mermaid
+classDiagram
+  Animal <|-- Duck
+  Animal <|-- Fish
+  Animal <|-- Zebra
+  Animal : +int age
+  Animal : +String gender
+  Animal: +isMammal()
+  Animal: +mate()
+  class Duck{
+    +String beakColor
+    +swim()
+    +quack()
+  }
+  class Fish{
+    -int sizeInFeet
+    -canEat()
+  }
+  class Zebra{
+    +bool is_wild
+    +run()
+  }			
+\`\`\`
+
+\`\`\`mermaid
+sequenceDiagram
+  Alice->>+John: Hello John, how are you?
+  Alice->>+John: John, can you hear me?
+  John-->>-Alice: Hi Alice, I can hear you!
+  John-->>-Alice: I feel great!
+\`\`\`
+
+\`\`\`mermaid
+stateDiagram
+  [*] --> Still
+  Still --> [*]
+
+  Still --> Moving
+  Moving --> Still
+  Moving --> Crash
+  Crash --> [*]
+\`\`\`
+
+\`\`\`mermaid
+pie 
+  title Pets adopted by volunteers
+  "Dogs" : 386
+  "Cats" : 85
+  "Rats" : 15           
+\`\`\`
+
+\`\`\`mermaid
+gantt
+  dateFormat  YYYY-MM-DD
+  title Adding GANTT diagram functionality to mermaid
+
+  section A section
+  Completed task            :done,    des1, 2014-01-06,2014-01-08
+  Active task               :active,  des2, 2014-01-09, 3d
+  Future task               :         des3, after des2, 5d
+  Future task2              :         des4, after des3, 5d
+\`\`\`
+`;
 
 export default () => {
-  const [rawContent, setRawContent] = useState(`
-  # This is a header And
-  this is a paragraph
+  const [rawContent, setRawContent] = useState(sampleMarkDown);
 
-  \`\`\`mermaid
-  gantt
-    dateFormat  YYYY-MM-DD
-    title Adding GANTT diagram functionality to mermaid
-
-    section A section
-    Completed task            :done,    des1, 2014-01-06,2014-01-08
-    Active task               :active,  des2, 2014-01-09, 3d
-    Future task               :         des3, after des2, 5d
-    Future task2              :         des4, after des3, 5d
-  \`\`\`
-
-  \`\`\`mermaid
-  gantt
-    dateFormat  YYYY-MM-DD
-    title Adding GANTT diagram functionality to mermaid
-
-    section A section
-    Completed task            :done,    des1, 2014-01-06,2014-01-08
-    Active task               :active,  des2, 2014-01-09, 3d
-    Future task               :         des3, after des2, 5d
-    Future task2              :         des4, after des3, 5d
-  \`\`\`
-`);
-
-  const updateRawContent = (raw) => {
-    setRawContent(raw);
-    mermaid.init(); //Mermaid API is shit... No way around this unless you have the IDs of the divs...
-  };
-
-  const [htmlContent, setHtmlContent] = useState('');
-  unified()
-    .use(markdown)
-    .use(mermaidRmk)
-    .use(html)
-    .process(rawContent, (err, file) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-
-      console.log(file.contents);
-      if (htmlContent !== file.contents) {
-        setHtmlContent(file.contents);
-      }
-    });
+  const html = useMarkdownParser(rawContent);
 
   return (
     <>
@@ -77,7 +97,7 @@ export default () => {
           highlightActiveLine={true}
           mode={'markdown'}
           name={'blah2'}
-          onChange={updateRawContent}
+          onChange={setRawContent}
           debounceChangePeriod={50}
           placeholder={'Placeholder Text'}
           showGutter={true}
@@ -94,7 +114,7 @@ export default () => {
       </Col>
 
       <Col span={12}>
-        <div style={{ height: 500 }} dangerouslySetInnerHTML={{ __html:htmlContent }}></div>
+        <div style={{ height: 500 }} dangerouslySetInnerHTML={{ __html:html }}></div>
       </Col>
     </>
   );
