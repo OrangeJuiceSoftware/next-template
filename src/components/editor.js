@@ -6,6 +6,8 @@ import 'ace-builds/src-noconflict/theme-github';
 import { useMarkdownParser } from 'hooks';
 import { Col } from 'antd';
 
+import DocumentViewer from 'components/documentViewer';
+
 const sampleMarkDown = `
 # This is a header And
 this is a paragraph
@@ -81,12 +83,15 @@ gantt
   Future task               :         des3, after des2, 5d
   Future task2              :         des4, after des3, 5d
 \`\`\`
+
+\`\`\`
+const kill me 
+\`\`\`
+
 `;
 
 export default () => {
-  const [rawContent, setRawContent] = useState(sampleMarkDown);
-
-  const html = useMarkdownParser(rawContent);
+  const [rawMarkdown, setRawMarkdown] = useState(sampleMarkDown);
 
   return (
     <>
@@ -97,13 +102,13 @@ export default () => {
           highlightActiveLine={true}
           mode={'markdown'}
           name={'blah2'}
-          onChange={setRawContent}
+          onChange={setRawMarkdown}
           debounceChangePeriod={50}
           placeholder={'Placeholder Text'}
           showGutter={true}
           showPrintMargin={true}
           theme={'github'}
-          value={rawContent}
+          value={rawMarkdown}
           setOptions={{
             // enableBasicAutocompletion: false,
             // enableLiveAutocompletion: false,
@@ -114,7 +119,7 @@ export default () => {
       </Col>
 
       <Col span={12}>
-        <div style={{ height: 500 }} dangerouslySetInnerHTML={{ __html:html }}></div>
+        <DocumentViewer rawMarkdown={rawMarkdown}/>
       </Col>
     </>
   );

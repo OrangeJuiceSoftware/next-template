@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import mermaid from 'mermaid';
 import unified from 'unified';
@@ -7,36 +7,46 @@ import unified from 'unified';
 import html from 'remark-html';
 import markdown from 'remark-parse';
 import mermaidRmk from '../parser';
+import remark2react from 'remark-react';
 
 mermaid.initialize({
   startOnLoad: true
 });
 
-export default (rawMarkdown) => {
+const Test = ({ children }) => {
+  <p>
+    {children}
+  </p>;
+
+};
+
+export default ({ rawMarkdown }) => {
   const [result, setResult] = useState();
 
-  console.log('hoook');
+  console.log(rawMarkdown);
+
 
   useEffect(() => {
-    console.log('unified');
-
-    unified()
+    const processor = unified()
       .use(markdown)
       .use(mermaidRmk)
-      .use(html)
-      .process(rawMarkdown, (err, file) => {
-        if (err) {
-          return console.log(err);
+      .use(remark2react, {
+        remarkReactComponents: {
+          mermaid: Test
         }
-
-        setResult(file.contents);
       });
+
+    processor.process(rawMarkdown, (err, file) => {
+      if (err) {
+        return console.log(err);
+      }
+
+      setResult(file.contents);
+    });
 
   }, [rawMarkdown]);
 
   useEffect(() => {
-    console.log('mermaid');
-
     try {
       mermaid.init(); //Mermaid API is shit... No way around this unless you have the IDs of the divs...
     } catch (error) {
@@ -44,6 +54,9 @@ export default (rawMarkdown) => {
     }
   }, [result]);
 
-
-  return result;
+  return (
+    <>
+      {result}
+    </>
+  );
 };
