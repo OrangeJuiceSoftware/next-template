@@ -13,28 +13,14 @@ mermaid.initialize({
   startOnLoad: true
 });
 
-const Test = ({ children }) => {
-  <p>
-    {children}
-  </p>;
-
-};
-
 export default ({ rawMarkdown }) => {
   const [result, setResult] = useState();
-
-  console.log(rawMarkdown);
-
 
   useEffect(() => {
     const processor = unified()
       .use(markdown)
       .use(mermaidRmk)
-      .use(remark2react, {
-        remarkReactComponents: {
-          mermaid: Test
-        }
-      });
+      .use(html);
 
     processor.process(rawMarkdown, (err, file) => {
       if (err) {
@@ -54,9 +40,5 @@ export default ({ rawMarkdown }) => {
     }
   }, [result]);
 
-  return (
-    <>
-      {result}
-    </>
-  );
+  return <div dangerouslySetInnerHTML={{ __html: result }}></div>;
 };
